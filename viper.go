@@ -1397,7 +1397,8 @@ func readAsCSV(val string) ([]string, error) {
 // mostly copied from pflag's implementation of this operation here https://github.com/spf13/pflag/blob/master/string_to_string.go#L79
 // alterations are: errors are swallowed, map[string]interface{} is returned in order to enable cast.ToStringMap
 func stringToStringConv(val string) interface{} {
-	val = strings.Trim(val, "[]")
+	val = strings.TrimPrefix(val, "[")
+	val = strings.TrimSuffix(val, "]")
 	// An empty string would cause an empty map
 	if len(val) == 0 {
 		return map[string]interface{}{}

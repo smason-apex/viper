@@ -1218,6 +1218,7 @@ func TestBindPFlagStringToString(t *testing.T) {
 		{map[string]string{"yo": "hi", "oh": "hi=there"}, "yo=hi,oh=hi=there"},
 		{map[string]string{"yo": ""}, "yo="},
 		{map[string]string{"yo": "", "oh": "hi=there"}, "yo=,oh=hi=there"},
+		{map[string]string{"yo": "", "oh": "foo[bar]"}, "yo=,oh=foo[bar]"},
 	}
 
 	v := New() // create independent Viper object
